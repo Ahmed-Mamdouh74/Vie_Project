@@ -1,0 +1,42 @@
+﻿@inject ILocalStorageService LocalStorage
+
+<AuthorizeView>
+
+
+    <NotAuthorized>
+        <div>
+            <NavLink href=""> login </NavLink>
+            <NavLink href="/register"> register </NavLink>
+
+            --- @Name
+
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code{
+
+  
+
+    public string Name;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        Name = "ID: " + await LocalStorage.GetItemAsync<int>("id");
+
+
+    }
+
+
+
+
+
+
+}
+
+
+
+
+
+

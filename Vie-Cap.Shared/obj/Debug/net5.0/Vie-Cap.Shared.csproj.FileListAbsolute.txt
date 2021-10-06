@@ -1,0 +1,11 @@
+D:\ss\BlazorServer\Vie-Cap.Shared\bin\Debug\net5.0\Vie-Cap.Shared.deps.json
+D:\ss\BlazorServer\Vie-Cap.Shared\bin\Debug\net5.0\Vie-Cap.Shared.dll
+D:\ss\BlazorServer\Vie-Cap.Shared\bin\Debug\net5.0\ref\Vie-Cap.Shared.dll
+D:\ss\BlazorServer\Vie-Cap.Shared\bin\Debug\net5.0\Vie-Cap.Shared.pdb
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\Vie-Cap.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\Vie-Cap.Shared.AssemblyInfoInputs.cache
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\Vie-Cap.Shared.AssemblyInfo.cs
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\Vie-Cap.Shared.csproj.CoreCompileInputs.cache
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\Vie-Cap.Shared.dll
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\ref\Vie-Cap.Shared.dll
+D:\ss\BlazorServer\Vie-Cap.Shared\obj\Debug\net5.0\Vie-Cap.Shared.pdb

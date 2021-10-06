@@ -1,0 +1,38 @@
+﻿@page "/"
+@*<h1>Hello, world!</h1>
+
+    Welcome to your new app.
+
+    <SurveyPrompt Title="How is Blazor working for you?" />*@
+@inject ILocalStorageService LocalStorage
+
+<AuthorizeView>
+    <Authorized>
+        <h1>
+            Hi , @context.User.Identity.Name        welcome back --@Name
+        </h1>
+        <a href="/account">Account</a>'
+    </Authorized>
+    <NotAuthorized>
+        <h1>Welcome to Vie-Capital</h1>
+        <Login></Login>
+    </NotAuthorized>
+
+
+
+</AuthorizeView>
+@code{
+
+
+
+    public string Name;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        Name = "ID: " + await LocalStorage.GetItemAsync<int>("id");
+
+
+
+    }
+}

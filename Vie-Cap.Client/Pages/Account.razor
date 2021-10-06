@@ -1,0 +1,687 @@
+﻿@page "/Account"
+
+@inject IJSRuntime JSRuntime
+@layout EmptyLayout
+
+@inject ICountry Country
+@inject IActivitiesService Act
+@inject IuserService UserService
+@inject ILocalStorageService _LocalStorageService
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+@*ComboBox*@
+<style>
+
+
+    .control_wrapper {
+    }
+</style>
+
+
+
+
+
+<div class="container">
+    <h1 class="tittle"> <span style="color:blue;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> VIE</span> - Capital - @U_Id</h1>
+
+    <div class="form">
+        <div class="inner">
+            <ul class="steps">
+                <li class="listItem show">
+                    <div class="col1">
+                        <span class="step"><span>1</span><span class="checkmark"></span></span>
+                        <span class="line"></span>
+                    </div>
+                    <div class="col2 stepBody">
+                        <div class="stepTitle  " style="font-size:35px">
+                            Company Info
+                        </div>
+                        <div class="content">
+                            <div class="inputGroup">
+
+
+                                <label for="companyName">Company Name</label>
+                                <input type="text" name="s" id="companyName" value="@User.FirstName" />
+
+
+                            </div>
+
+
+                            <div class="inputGroup">
+
+                                <label for="companyWeb">Company WebSite</label>
+
+                                <input type="text" name="d" id="companyWeb" />
+                            </div>
+                            <div class="inputGroup">
+
+                                <label for="Legal">Legal Business Name </label>
+
+                                <input type="text" name="d" id="Legal" />
+                            </div>
+
+                            <br />
+                            <div class="form-group">
+
+                                @*Remote Data Source code snippet*@
+                                <SfComboBox TValue="string" TItem="Activity"
+                        Placeholder="Select a name">
+            <ComboBoxFieldSettings Value="A_Id" Text="Name">
+            </ComboBoxFieldSettings>
+            <SfDataManager Url="https://localhost:44321/api/Actvities"
+                           Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor"
+                           CrossDomain=true>
+            </SfDataManager>
+        </SfComboBox>
+
+                            </div>
+
+
+                            <div class="inputGroup">
+
+                                <p for="Describe">Describe</p>
+
+                                <textarea type="text" name="d" id="Describe" style="height:190px" />
+                            </div>
+
+                            <div class="">
+
+                                <label for="Describe">Major (Optional)</label>
+
+                                <input type="text" name="d" id="Describe" />
+                            </div>
+
+
+                            <div class="buttons">
+                                <button disabled class="next">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="listItem">
+
+                    <EditForm Model="us" OnSubmit="HandleSubmit">
+
+
+                        <div class="col1">
+                            <span class="step"><span>2</span><span class="checkmark"></span></span>
+                            <span class="line"></span>
+                        </div>
+                        <div class="col2 stepBody">
+                            <div class="stepTitle  " style="font-size:35px">
+                                Owners Profile
+                            </div>
+                            <div class="content">
+                                <!-- wrap inputs into div to enable :focus-within css selector on container -->
+
+                                <div class="inputGroup">
+                                    <label for="">First Name </label>
+                                    <input value="@User.FirstName" name="" id="" />
+                                </div>
+
+                                <div class="inputGroup">
+                                    <label for="">Last Name </label>
+                                    <input value="@User.LastName" name="" id="" />
+                                </div>
+                                <div class="inputGroup">
+                                    <label for="">Email  </label>
+                                    <input value="@User.Email" type="email" name="" id="" />
+                                </div>
+                                @*<div class="inputGroup">
+                        <select>
+
+                            <option value="CEO">
+                                CEO
+                            </option>
+
+                            <option value="CTO">
+                                CTO
+                            </option>
+
+                            <option value="CFO">
+                                CFO
+                            </option>
+                            <option value="Founder">
+                                Founder
+                            </option>
+                        </select>
+                    </div>*@
+                                <div class="inputGroup">
+                                    <label for="">% OwnerShip   </label>
+                                    <input value="@User.OwnerShip" name="" id="" />
+                                </div>
+
+                                <div class="inputGroup">
+                                    <label for="">Phone Number  </label>
+                                    <input value="@User.Phone" name="" id="" />
+                                </div>
+
+                                <div class="inputGroup">
+                                    <label for="">National_ID   </label>
+                                    <input value="@User.National_ID" name="" id="" />
+                                </div>
+
+                                <div class="inputGroup">
+                                    <label for="">ImageUrl   </label>
+                                    <input value="@User.ImageUrl" name="" id="" />
+                                </div>
+                                <br />
+
+
+                                <div class="form-group">
+
+                                    <SfComboBox TValue="string" TItem="Countries"
+                                                Placeholder="Select a name">
+                                        <ComboBoxFieldSettings Value="C_Id" Text="Country_Name">
+                                        </ComboBoxFieldSettings>
+                                        <SfDataManager Url="https://localhost:44321/api/country"
+                                                       Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor"
+                                                       CrossDomain=true>
+                                        </SfDataManager>
+                                    </SfComboBox>
+                                </div>
+
+                                <div class="inputGroup">
+                                    <label for="">Address   </label>
+                                    <InputText @bind-Value="us.Address" class="form-control"></InputText>
+                                    <hr />
+                                    <InputNumber  @bind-Value="us.C_ID" class="form-control"></InputNumber>
+                                </div>
+                                <div class="inputGroup">
+                                    <label for="">State   </label>
+                                    <input value="@User.State" name="" id="" />
+                                </div>
+                                <div class="inputGroup">
+                                    <label for="">ZipCode   </label>
+                                    <input value="@User.ZipCode" name="" id="" />
+                                </div>
+
+
+
+
+                                <div class="buttons">
+                                    <button type="submit">Continue</button>
+                                    <button class="prev">Back</button>
+                                </div>
+                            </div>
+                        </div>
+                        </EditForm>
+                </li>
+                <li class="listItem">
+                    <div class="col1">
+                        <span class="step"><span>3</span><span class="checkmark"></span></span>
+                        <span class="line"></span>
+                    </div>
+                    <div class="col2 stepBody">
+                        <div class="stepTitle">
+                            Step 3
+                        </div>
+                        <div class="content">
+                            <div class="inputGroup">
+                                <p>
+                                    Congratulations! Now you're all set,<br />
+                                    hit that submit button!
+                                </p>
+                            </div>
+                            <div class="buttons">
+                                <button class="submit">Submit</button>
+                                <button class="prev">Back</button>
+                            </div>
+                            <div class="message">
+                                <span class="success">You signed up succesfully!</span>
+                                <span class="fail">
+                                    Oops, something went wrong! Please double-check your
+                                    inputs.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .container h1 {
+            margin: 50px 0;
+            width: fit-content;
+        }
+
+        .container .form {
+            width: 500px;
+            height: auto;
+        }
+
+    button {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    /* ------------------------
+            FORM STYLES
+            --------------------------- */
+    .form {
+        background-color: #ffffff;
+        padding: 60px 25px;
+        box-shadow: 5px 5px 22px 5px rgba(0, 0, 0, 0.05);
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+    }
+
+    /* list items styles */
+    .steps .listItem {
+        transition: 0.3s height ease-out;
+        -webkit-transition: 0.3s height ease-out;
+        -moz-transition: 0.3s height ease-out;
+        -ms-transition: 0.3s height ease-out;
+        -o-transition: 0.3s height ease-out;
+        /* hide closed items */
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        /* this property should be animated using js */
+        height: 66px; /*height step + 10px margin + 20px visible line */
+    }
+
+    .listItem + .listItem {
+        margin-top: 10px;
+    }
+
+    /* - step styles */
+    .listItem .col1 {
+        width: 60px; /* temporary fixed width, should be changed later */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .listItem .col1 .step {
+            color: #fff;
+            background-color: #007bff;
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1em;
+            /* add some space between step and line */
+            margin-bottom: 10px;
+        }
+
+    .col1 .step span {
+        /* show step number by default */
+        display: block;
+    }
+
+    .listItem .col1 .line {
+        /* make line stretch to bottom of list item */
+        flex-grow: 1;
+        width: 2px;
+        background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .listItem:last-of-type .col1 .line {
+        /* hide line on last list item */
+        width: 0px;
+    }
+
+    /* - body styles */
+    .listItem .col2 {
+        /* make col2 take up left over width in list item container */
+        flex: 1;
+        /* (col1's width - line width) / 2  */
+        margin-right: 29px;
+    }
+
+    .listItem .stepBody {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .listItem .stepBody .stepTitle {
+            /* height of tile should equal step icon height */
+            height: 36px;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            margin-bottom: 25px;
+        }
+
+        .listItem .stepBody .content {
+            display: flex;
+            flex-direction: column;
+            /* hide step content by default */
+            visibility: hidden;
+        }
+
+    .show.listItem .stepBody .content {
+        visibility: visible;
+    }
+
+    /* - 1. input styles */
+    .listItem .stepBody .content .inputGroup {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .listItem .stepBody .content .inputGroup:focus-within label {
+            /* move label up on input focus */
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+            /* make label also change color on focus */
+            color: #19a974;
+        }
+
+        .listItem .stepBody .content .inputGroup label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            transform: translateY(30px);
+            -webkit-transform: translateY(30px);
+            -moz-transform: translateY(30px);
+            -ms-transform: translateY(30px);
+            -o-transform: translateY(30px);
+            transition: 0.25s color ease-out, 0.25s transform ease-out;
+            -webkit-transition: 0.25s color ease-out, 0.25s transform ease-out;
+            -moz-transition: 0.25s color ease-out, 0.25s transform ease-out;
+            -ms-transition: 0.25s color ease-out, 0.25s transform ease-out;
+            -o-transition: 0.25s color ease-out, 0.25s transform ease-out;
+        }
+
+        /* add space to each consecutive input label */
+        .listItem .stepBody .content .inputGroup + .inputGroup {
+            margin-top: 20px;
+        }
+
+        .listItem .stepBody .content .inputGroup input {
+            border: 0;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
+            -webkit-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
+            -moz-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
+            -ms-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
+            -o-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
+            font-size: 1.125rem;
+            line-height: 1.5em;
+            margin-top: 20px;
+        }
+
+            .listItem .stepBody .content .inputGroup input:focus {
+                outline: 0;
+                border-bottom: 2px solid #19a974;
+            }
+
+    .listItem:last-of-type .stepBody .content .inputGroup p {
+        font-size: 1.125rem;
+        line-height: 1.6em;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* - 2. buttons */
+    .listItem .stepBody .content .buttons {
+        display: flex;
+        flex-direction: row;
+        margin: 40px 0;
+    }
+
+    .listItem:last-of-type .stepBody .content .buttons {
+        margin-bottom: 10px;
+    }
+
+    button:focus {
+        outline: 0;
+    }
+
+    .buttons .next,
+    .buttons .submit {
+        border: 0;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        font-size: 1rem;
+        line-height: 1em;
+        padding: 14px 24px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .buttons .prev {
+        border: 0;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 14px 24px;
+        background-color: white;
+    }
+
+    .message {
+        padding: 5px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        position: relative;
+        height: 24px;
+    }
+
+    .success {
+        color: #19a974;
+    }
+
+    .fail {
+        color: #ff4136;
+    }
+
+    .message .success,
+    .message .fail {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+        .message.success .success,
+        .message.fail .fail {
+            opacity: 1;
+            visibility: visible;
+        }
+
+    /* ------------------------
+            JS STYLES
+            --------------------------- */
+    .listItem .content .js-focus.inputGroup label {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        color: #19a974;
+    }
+
+    .listItem .content .js-focus.inputGroup input {
+        outline: 0;
+        border-bottom: 2px solid #19a974;
+    }
+
+    /* disabled button styles */
+    button:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    /* hide span with number upon completion and show checkmark */
+    .done .col1 .step span:first-of-type {
+        display: none;
+    }
+
+    .done .col1 .step .checkmark {
+        content: "";
+        position: relative;
+        right: 2px;
+        height: 17px;
+        width: 3px;
+        background-color: #fff;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform-origin: bottom center;
+        margin-bottom: 3px;
+    }
+
+        .done .col1 .step .checkmark::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            display: block;
+            background-color: #fff;
+            transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform-origin: bottom left;
+            height: 9px;
+            width: 3px;
+        }
+</style>
+
+
+
+
+@code {
+
+
+
+
+
+
+    string Name = string.Empty;
+    public int U_Id { get; set; }
+
+
+    User User = new User();
+
+
+    IJSObjectReference JSObjectReference { set; get; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+
+        JSObjectReference = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./Js/JsfileA.js");
+
+    }
+
+    public List<Activity> Activities { set; get; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+        await Country.LoadCounrtAsync();
+        User = await UserService.GetUserById(U_Id);
+        await Act.LoadActivityAsync();
+
+
+
+        //await JSRuntime.InvokeVoidAsync("Console.log","id",d);
+
+    }
+
+
+    public class Activity
+    {
+        public int A_Id { get; set; }
+        public string Name { get; set; }
+
+
+    }
+    public class Countries
+    {
+
+        public int C_ID { get; set; }
+        public int Sk_Country { get; set; }
+        public int Number { get; set; }
+        public string Alpha2code { get; set; }
+        public string Alpha3code { get; set; }
+        public string Country_Name { get; set; }
+
+
+    }
+    [Parameter]
+    public UpdateUser us { get; set; } = new UpdateUser();
+
+
+    public async void HandleSubmit()
+    {
+        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+
+
+
+        await UserService.Edit(us,U_Id);
+
+        Console.WriteLine("fdgdf");
+
+
+
+    }
+
+
+    //async void HandleRegistration()
+    //{
+
+
+    //    U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+
+
+
+    //    await UserService.Edit(U_Id);
+
+
+
+    //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

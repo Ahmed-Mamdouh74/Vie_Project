@@ -1,0 +1,42 @@
+﻿@page "/counter"
+@*@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage*@
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+<h1>Counter</h1>
+
+<h2>@Name</h2>
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    public string Name;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //await sessionStorage.SetItemAsync("ID", "20019");
+        await sessionStorage.SetItemAsync("Name", "John Smith");
+        Name = "ID: " + await sessionStorage.GetItemAsync<string>("uId") + "Name : " + await sessionStorage.GetItemAsync<string>("Name");
+    }
+
+
+
+
+
+
+
+
+    public string name;
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    
+
+
+
+}
