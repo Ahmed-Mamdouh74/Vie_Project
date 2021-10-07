@@ -89,14 +89,3 @@ form.stepsWrapper.addEventListener("click", e => {
 
 
 
-//$(document).ready(function () {
-//    $('select').selectize({
-//        sortField: 'text'
-//    });
-//});
-
-$(document).ready(function () {
-    $('select').selectize({
-        sortField: 'text'
-    });
-});

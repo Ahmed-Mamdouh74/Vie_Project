@@ -1,0 +1,56 @@
+﻿@page "/Companies"
+
+
+
+
+
+@inject ILocalStorageService _LocalStorageService
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject IcompanyService companyService
+@inject NavigationManager NavigationManager
+@inject IToastService toastService
+
+
+   
+
+    <div class="inputGroup">
+
+
+        <label for="companyName">Company Name</label>
+       
+        <input  type="text" @bind="comp.Address" />
+    </div>
+    <button @onclick="HandlePostCompany" class="btn btn-block" >
+        submit
+</button>
+
+
+
+
+@code {
+
+
+
+
+
+    ModeViewCompany comp = new ModeViewCompany();
+
+
+
+    public async Task HandlePostCompany()
+    {
+
+
+        var result = await companyService.Postcompany(comp);
+        Console.WriteLine(result);
+        toastService.ShowSuccess("welcome");
+
+
+    }
+
+
+
+
+
+
+}

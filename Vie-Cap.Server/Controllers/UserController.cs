@@ -42,9 +42,15 @@ namespace Vie_Cap.Server.Controllers
 
 
 
-        [HttpPut("User")]
-        public async Task<IActionResult> Put([FromBody] UpdateUser users  , int id )
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put([FromBody] UpdateUser users  ,   int id )
         {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.User_ID == id);
             //  var user = await _utilityService.GetUser();
             user.C_ID = 1;// users.C_ID;
@@ -55,7 +61,7 @@ namespace Vie_Cap.Server.Controllers
             user.Phone = users.Phone;
             user.Address = users.Address;
             user.National_ID = users.National_ID;
-            user.ZipCode = user.ZipCode;
+            user.ZipCode =  user.ZipCode;
             await _context.SaveChangesAsync();
 
 

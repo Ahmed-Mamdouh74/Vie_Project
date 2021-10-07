@@ -37,23 +37,24 @@ namespace Vie_Cap.Client.Service
         public event Action OnChange;
         void UserChanged() => OnChange.Invoke();
 
-        public async Task<List<UpdateUser>> Edit (UpdateUser user, int id)
+        public async Task<UpdateUser> Edit (int id ,UpdateUser user)
         {
-            var U_Id = await _LocalStorageService.GetItemAsync<int>("id");
-            id = U_Id;
-            var result = await _http.PutAsJsonAsync($"https://localhost:44321/api/User/User/{id}",user);
-            user.C_ID = await result.Content.ReadFromJsonAsync<int>();
-            user.JopTitle = await result.Content.ReadFromJsonAsync<string>();
-            user.National_ID = await result.Content.ReadFromJsonAsync<int>();
-            user.OwnerShip = await result.Content.ReadFromJsonAsync<int>();
-            user.Phone = await result.Content.ReadFromJsonAsync<string>();
-            user.ImageUrl = await result.Content.ReadFromJsonAsync<string>();
-            user.Address = await result.Content.ReadFromJsonAsync<string>();
-            user.State = await result.Content.ReadFromJsonAsync<string>();
-            user.ZipCode = await result.Content.ReadFromJsonAsync<int>();
 
-            OnChange.Invoke();
-            return us;
+            var result = await _http.PutAsJsonAsync($"https://localhost:44321/api/User/{id}",user);
+            //user.C_ID = 1; //await result.Content.ReadFromJsonAsync<int>();
+            //user.JopTitle = await result.Content.ReadFromJsonAsync<string>();
+            //user.National_ID = await result.Content.ReadFromJsonAsync<int>();
+            //user.OwnerShip = await result.Content.ReadFromJsonAsync<int>();
+            //user.Phone = await result.Content.ReadFromJsonAsync<string>();
+            //user.ImageUrl = await result.Content.ReadFromJsonAsync<string>();
+            //user.Address = await result.Content.ReadFromJsonAsync<string>();
+            //user.State = await result.Content.ReadFromJsonAsync<string>();
+            //user.ZipCode = await result.Content.ReadFromJsonAsync<int>();
+
+            return await result.Content.ReadFromJsonAsync<UpdateUser>();
+
+            // OnChange.Invoke();
+            //  return us;
         }
 
 

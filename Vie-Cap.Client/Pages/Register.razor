@@ -8,9 +8,8 @@
 @inject ProtectedLocalStorage BrowserStorage
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 
-
 <!-- Compiled and minified CSS -->
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
 <style>
     @@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans&display=swap');
@@ -125,7 +124,9 @@
 </style>
 
 <h3>Create New Account</h3>
-<hr />
+<center>
+    <hr />
+</center>
 
 
 <EditForm Model="User" OnValidSubmit="HandleRegistration">
@@ -133,7 +134,9 @@
     @*<ValidationSummary> <hr /></ValidationSummary>*@
     <div>
         <h1 class="tittle"> <span style="color:blue;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> VIE</span> -Capital</h1>
-        <hr />
+        <center>
+            <hr />
+        </center>
     </div>
     <div class="backbox">
         @*<input type="text" placeholder="Username" />
@@ -293,14 +296,14 @@
         {
 
             toastService.ShowSuccess(result.Message);
-           await LocalStorage.SetItemAsync("id", result.Data);
+            await LocalStorage.SetItemAsync("id", result.Data);
             //await JSRuntime.InvokeVoidAsync("localStorage.setItem", "id", result.Data);
             //await LocalStorage.SetItemAsync<int>("id", result.Data);
             //  var name = await LocalStorage.GetItemAsync<int>("id");
             //await BrowserStorage.SetAsync("id", result.Data);
 
-        //    await sessionStorage.SetItemAsync("uId",result.Data);
-         //   var name = await sessionStorage.GetItemAsync<int>("uId");
+            //    await sessionStorage.SetItemAsync("uId",result.Data);
+            //   var name = await sessionStorage.GetItemAsync<int>("uId");
 
 
             NavigationManager.NavigateTo("/Account");

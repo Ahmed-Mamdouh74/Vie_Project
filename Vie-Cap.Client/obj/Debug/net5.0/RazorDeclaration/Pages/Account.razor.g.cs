@@ -153,20 +153,6 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 #line hidden
 #nullable disable
 #nullable restore
-#line 23 "D:\ss\BlazorServer\Vie-Cap.Client\_Imports.razor"
-using Syncfusion.Blazor.DropDowns;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 24 "D:\ss\BlazorServer\Vie-Cap.Client\_Imports.razor"
-using Syncfusion.Blazor.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 25 "D:\ss\BlazorServer\Vie-Cap.Client\_Imports.razor"
 using Blazored.SessionStorage;
 
@@ -176,6 +162,20 @@ using Blazored.SessionStorage;
 #nullable restore
 #line 26 "D:\ss\BlazorServer\Vie-Cap.Client\_Imports.razor"
 using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\ss\BlazorServer\Vie-Cap.Client\Pages\Account.razor"
+using Syncfusion.Blazor.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\ss\BlazorServer\Vie-Cap.Client\Pages\Account.razor"
+using Syncfusion.Blazor.DropDowns;
 
 #line default
 #line hidden
@@ -190,7 +190,7 @@ using MudBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 583 "D:\ss\BlazorServer\Vie-Cap.Client\Pages\Account.razor"
+#line 718 "D:\ss\BlazorServer\Vie-Cap.Client\Pages\Account.razor"
        
 
 
@@ -219,10 +219,12 @@ using MudBlazor;
 
     protected override async Task OnInitializedAsync()
     {
+
         U_Id = await _LocalStorageService.GetItemAsync<int>("id");
         await Country.LoadCounrtAsync();
         User = await UserService.GetUserById(U_Id);
         await Act.LoadActivityAsync();
+
 
 
 
@@ -250,23 +252,24 @@ using MudBlazor;
 
 
     }
-    [Parameter]
-    public UpdateUser us { get; set; } = new UpdateUser();
+    //[Parameter]
+    //public UpdateUser us { get; set; } = new UpdateUser();
 
 
-    public async void HandleSubmit()
-    {
-        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
-
-
-
-        await UserService.Edit(us,U_Id);
-
-        Console.WriteLine("fdgdf");
+    //protected async Task EditUser()
+    //{
+    //    U_Id = await _LocalStorageService.GetItemAsync<int>("id");
 
 
 
-    }
+    //    await UserService.Edit(U_Id, us);
+
+    //    //  Console.WriteLine("fdgdf");
+
+
+
+
+    //}
 
 
     //async void HandleRegistration()
@@ -289,7 +292,55 @@ using MudBlazor;
 
 
 
+    public UpdateUser us = new UpdateUser();
 
+
+    public async Task EditUser()
+    {
+        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+
+
+
+        await UserService.Edit(U_Id, us);
+
+
+    }
+
+
+
+
+
+    ModeViewCompany comp = new ModeViewCompany();
+
+
+
+    public async Task HandlePostCompany()
+    {
+        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+
+        comp.User_ID = U_Id;
+        var result = await companyService.Postcompany(comp);
+
+        Console.WriteLine(result);
+        toastService.ShowSuccess("welcome");
+
+
+    }
+
+
+
+
+    public class JopTitle
+    {
+        public string Name { get; set; }
+    }
+    List<JopTitle> LocalData = new List<JopTitle> {
+    new JopTitle() {Name= "CEO " },
+    new JopTitle() {Name= "CTO" },
+    new JopTitle() {Name= "CFO" },
+    new JopTitle() {Name= "Founder" },
+
+  };
 
 
 
@@ -299,6 +350,9 @@ using MudBlazor;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IcompanyService companyService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILocalStorageService _LocalStorageService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IuserService UserService { get; set; }

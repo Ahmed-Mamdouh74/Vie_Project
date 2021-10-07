@@ -190,7 +190,7 @@ using MudBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 239 "D:\ss\BlazorServer\Vie-Cap.Client\Pages\Register.razor"
+#line 242 "D:\ss\BlazorServer\Vie-Cap.Client\Pages\Register.razor"
        
 
 
@@ -248,14 +248,14 @@ using MudBlazor;
         {
 
             toastService.ShowSuccess(result.Message);
-           await LocalStorage.SetItemAsync("id", result.Data);
+            await LocalStorage.SetItemAsync("id", result.Data);
             //await JSRuntime.InvokeVoidAsync("localStorage.setItem", "id", result.Data);
             //await LocalStorage.SetItemAsync<int>("id", result.Data);
             //  var name = await LocalStorage.GetItemAsync<int>("id");
             //await BrowserStorage.SetAsync("id", result.Data);
 
-        //    await sessionStorage.SetItemAsync("uId",result.Data);
-         //   var name = await sessionStorage.GetItemAsync<int>("uId");
+            //    await sessionStorage.SetItemAsync("uId",result.Data);
+            //   var name = await sessionStorage.GetItemAsync<int>("uId");
 
 
             NavigationManager.NavigateTo("/Account");

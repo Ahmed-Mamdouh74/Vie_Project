@@ -188,7 +188,7 @@ using MudBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 109 "D:\ss\BlazorServer\Vie-Cap.Client\Shared\NavMenu.razor"
+#line 120 "D:\ss\BlazorServer\Vie-Cap.Client\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

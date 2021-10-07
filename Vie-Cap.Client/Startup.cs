@@ -53,6 +53,7 @@ namespace Vie_Cap.Client
             services.AddScoped<ICountry, CountryService>();
             services.AddScoped<IActivitiesService, ActivitiesService>();
            services.AddScoped<IuserService, userService>();
+            services.AddScoped<IcompanyService, companyService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
               .AddJwtBearer(options =>

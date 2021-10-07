@@ -1,0 +1,103 @@
+﻿@page "/GetUser"
+
+@inject IJSRuntime JSRuntime
+@layout EmptyLayout
+
+@inject ICountry Country
+@inject IActivitiesService Act
+@inject IuserService UserService
+@inject ILocalStorageService _LocalStorageService
+
+@inject HttpClient Http
+
+<div class="">
+
+    <div class="content">
+        <label for="">Name   </label>
+        <input value="@User.FirstName" />
+
+        <div class="">
+            <label for="">Address   </label>
+            <input type="text" class="validate" @bind="us.Address" style="width:450px">
+
+
+            <hr />
+        </div>
+
+
+
+        <div class="buttons">
+            <button @onclick="EditUser" class="btn btn-block">
+                submit
+            </button>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@code {
+
+    public int U_Id { get; set; }
+
+
+    User User = new User();
+    protected override async Task OnInitializedAsync()
+    {
+        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+        await Country.LoadCounrtAsync();
+        User = await UserService.GetUserById(U_Id);
+        await Act.LoadActivityAsync();
+
+
+
+
+
+    }
+
+
+
+
+   
+    public UpdateUser us  = new UpdateUser();
+
+
+    public async Task EditUser()
+    {
+        U_Id = await _LocalStorageService.GetItemAsync<int>("id");
+
+
+
+        await UserService.Edit(U_Id, us);
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+

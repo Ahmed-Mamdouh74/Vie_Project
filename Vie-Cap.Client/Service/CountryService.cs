@@ -26,7 +26,7 @@ namespace Vie_Cap.Client.Service
         {
             if (Countries.Count == 0)
             {
-                Countries = await _http.GetFromJsonAsync<IList<Vie_Cap.Shared.Country>>("https://localhost:44321/api/COuntry");
+                Countries = await _http.GetFromJsonAsync<IList<Vie_Cap.Shared.Country>>("https://localhost:44321/api/country");
 
             }
         }

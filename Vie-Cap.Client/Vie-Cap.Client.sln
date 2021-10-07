@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vie-Cap.Client", "Vie-Cap.Client.csproj", "{16E90A0A-705C-49F1-A715-64377C9F5B9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vie-Cap.Client", "Vie-Cap.Client.csproj", "{16E90A0A-705C-49F1-A715-64377C9F5B9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vie-Cap.Server", "..\Vie-Cap.Server\Vie-Cap.Server.csproj", "{FE2EE29F-7A0C-4D91-B2F3-D1C75ABA784E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vie-Cap.Server", "..\Vie-Cap.Server\Vie-Cap.Server.csproj", "{FE2EE29F-7A0C-4D91-B2F3-D1C75ABA784E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vie-Cap.Shared", "..\Vie-Cap.Shared\Vie-Cap.Shared.csproj", "{685C563C-F625-4603-A50D-461B4C803505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vie-Cap.Shared", "..\Vie-Cap.Shared\Vie-Cap.Shared.csproj", "{685C563C-F625-4603-A50D-461B4C803505}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

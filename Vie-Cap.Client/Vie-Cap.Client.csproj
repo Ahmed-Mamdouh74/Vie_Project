@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Vie-Cap.Shared\Vie-Cap.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Service\NewFolder\" />
+  </ItemGroup>
+
 </Project>

@@ -24,8 +24,8 @@ namespace Vie_Cap.Client.Service
         Task<User> GetUserById(int id);
 
         //Task Edit(int id);
-        Task<List<UpdateUser>> Edit(UpdateUser user, int id);
-
+        //  Task<List<UpdateUser>> Edit(int id, UpdateUser user );
+        Task<UpdateUser> Edit(int id, UpdateUser user);
         event Action OnChange;
 
 
